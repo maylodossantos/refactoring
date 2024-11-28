@@ -36,26 +36,9 @@ public class Movie {
                 throw new IllegalArgumentException("Incorrect Price Code");
         }
     }
-
-    // Calculate the charge based on the price strategy
+    // Delegate charge calculation to Price strategy
     public double getCharge(int daysRented) {
-        double thisAmount = 0;
-        switch (getPriceCode()) {
-            case REGULAR:
-                thisAmount += 2;
-                if (daysRented > 2)
-                    thisAmount += (daysRented - 2) * 1.5;
-                break;
-            case NEW_RELEASE:
-                thisAmount += daysRented * 3;
-                break;
-            case CHILDRENS:
-                thisAmount += 1.5;
-                if (daysRented > 3)
-                    thisAmount += (daysRented - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
+        return _price.getCharge(daysRented);  // Now delegates to the Price class
     }
 
     // Calculate the frequent renter points based on price strategy
