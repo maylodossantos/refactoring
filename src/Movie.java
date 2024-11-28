@@ -36,17 +36,14 @@ public class Movie {
                 throw new IllegalArgumentException("Incorrect Price Code");
         }
     }
+
     // Delegate charge calculation to Price strategy
     public double getCharge(int daysRented) {
         return _price.getCharge(daysRented);  // Now delegates to the Price class
     }
 
-    // Calculate the frequent renter points based on price strategy
+    // Move method: delegate frequent renter points calculation to Price class
     public int getFrequentRenterPoints(int daysRented) {
-        // Check if the movie is a new release and rented for more than 1 day
-        if (getPriceCode() == NEW_RELEASE && daysRented > 1) {
-            return 2; // Bonus points for new releases rented for more than 1 day
-        }
-        return 1; // Regular points
+        return _price.getFrequentRenterPoints(daysRented);  // Now delegates to the Price class
     }
 }
