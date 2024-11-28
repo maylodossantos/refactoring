@@ -9,4 +9,10 @@ public class NewReleasePrice extends Price {
         // Calculate charge for new releases
         return daysRented * 3;
     }
+
+    @Override
+    public int getFrequentRenterPoints(int daysRented) {
+        // Special case for new releases
+        return (daysRented > 1) ? 2 : 1;
+    }
 }
