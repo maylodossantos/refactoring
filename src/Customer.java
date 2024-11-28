@@ -12,6 +12,7 @@ public class Customer {
     public void addRental(Rental arg) {
         _rentals.addElement(arg);
     }
+
     public String getName() {
         return _name;
     }
@@ -26,7 +27,7 @@ public class Customer {
             Rental each = (Rental) rentals.nextElement();
 
             // calculate amount for each rental
-            double thisAmount = amountFor(each);
+            double thisAmount = each.getCharge();
 
             // add frequent renter points
             frequentRenterPoints++;
