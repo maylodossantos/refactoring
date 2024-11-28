@@ -2,11 +2,19 @@ public class Rental {
     private Movie _movie;
     private int _daysRented;
 
+    public Rental(Movie movie, int daysRented) {
+        _movie = movie;
+        _daysRented = daysRented;
+    }
+
+    public int getDaysRented() {
+        return _daysRented;
+    }
+
     public Movie getMovie() {
         return _movie;
     }
 
-    // Moved and renamed method
     public double getCharge() {
         double thisAmount = 0;
         switch (_movie.getPriceCode()) {
@@ -25,5 +33,14 @@ public class Rental {
                 break;
         }
         return thisAmount;
+    }
+
+    // Extracted and moved method
+    public int getFrequentRenterPoints() {
+        // Check if the movie is a new release and rented for more than 1 day
+        if (_movie.getPriceCode() == Movie.NEW_RELEASE && _daysRented > 1) {
+            return 2; // Bonus points
+        }
+        return 1; // Regular points
     }
 }
