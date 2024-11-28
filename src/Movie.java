@@ -5,20 +5,25 @@ public class Movie {
 
     private String _title;
     private int _priceCode;
+
     public Movie(String title, int priceCode) {
         _title = title;
         _priceCode = priceCode;
     }
+
     public int getPriceCode() {
         return _priceCode;
     }
+
     public void setPriceCode(int arg) {
         _priceCode = arg;
     }
+
     public String getTitle() {
         return _title;
     }
-    // Extracted method: move the charge calculation logic here
+
+    // Extracted and moved method: calculates charge based on days rented
     public double getCharge(int daysRented) {
         double thisAmount = 0;
         switch (_priceCode) {
@@ -37,5 +42,13 @@ public class Movie {
                 break;
         }
         return thisAmount;
+    }
+    // Extracted and moved method: calculates frequent renter points based on movie type and rental duration
+    public int getFrequentRenterPoints(int daysRented) {
+        // Check if the movie is a new release and rented for more than 1 day
+        if (_priceCode == NEW_RELEASE && daysRented > 1) {
+            return 2; // Bonus points for new releases rented for more than 1 day
+        }
+        return 1; // Regular points
     }
 }
